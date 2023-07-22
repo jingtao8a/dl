@@ -29,6 +29,24 @@ train_tfm = transforms.Compose([
     transforms.ToTensor()
 ])
 
+
+train_tfm2 = transforms.Compose([
+     transforms.Resize((128, 128)),
+     transforms.RandomPerspective(p=1.0),
+     transforms.ToTensor(),
+ ])
+
+train_tfm3 = transforms.Compose([
+     transforms.Resize((128, 128)),
+     transforms.RandomRotation((0, 180)),
+     transforms.ToTensor(),
+ ])
+
+train_tfm4 = transforms.Compose([
+     transforms.Resize((128, 128)),
+     transforms.RandomCrop((128, 128)),
+     transforms.ToTensor(),
+ ])
 class FoodDataset(Dataset):
     def __init__(self, path, tfm=test_tfm, files=None):
         super().__init__()
@@ -120,6 +138,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=1e-5)
 
 if __name__ == "__main__":
+    #test
     model.load_state_dict(torch.load(f"{_exp_name}_best.ckpt"))
     model.eval()
     prediction = []
