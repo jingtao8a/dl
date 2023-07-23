@@ -8,3 +8,5 @@ test
 training
 validation
 *.jpg
+Dataset
+__pycache__
